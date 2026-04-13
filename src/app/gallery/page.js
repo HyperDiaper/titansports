@@ -5,22 +5,22 @@ import Reveal from '@/components/Reveal'
 
 // isPortrait: true = render at natural portrait ratio; false = force landscape crop
 const photos = [
-  { src: '/images/turf-aerial.png',    alt: 'Aerial view of the arena',        label: 'The Arena',          cat: 'turf',  portrait: false, scale: 'scale-[1.0]'  },
-  { src: '/images/turf-night.png',     alt: 'Turf under floodlights at night', label: 'Night Sessions',      cat: 'turf',  portrait: false, scale: 'scale-[1.0]'  },
-  { src: '/images/turf-cricket.png',   alt: 'Cricket setup with stumps',        label: 'Cricket Ready',       cat: 'turf',  portrait: false, scale: 'scale-[1.32]' },
-  { src: '/images/turf-sunset.png',    alt: 'Turf at golden hour',              label: 'Golden Hour',         cat: 'turf',  portrait: false, scale: 'scale-[1.4]'  },
-  { src: '/images/turf-day.png',       alt: 'Turf during the day',              label: 'Day Play',            cat: 'turf',  portrait: false, scale: 'scale-[1.0]'  },
-  { src: '/images/cafe-interior.png',  alt: 'Mini Machines Café interior',      label: 'Mini Machines Café',  cat: 'cafe',  portrait: false, scale: 'scale-[1.0]'  },
-  { src: '/images/rc-excavator.png',   alt: 'RC excavator on sand track',       label: 'RC Excavator',        cat: 'cafe',  portrait: false, scale: 'scale-[1.0]'  },
-  { src: '/images/rc-cars.png',        alt: 'RC cars racing',                   label: 'RC Cars',             cat: 'cafe',  portrait: true,  scale: 'scale-[1.12]'  },
-  { src: '/images/board-games.png',    alt: 'Board games mural',                label: 'Board Games',         cat: 'cafe',  portrait: true,  scale: 'scale-[1.3]'  },
-  { src: '/images/cafe-side.png',      alt: 'Café ambiance shot',               label: 'Café Ambiance',       cat: 'cafe',  portrait: true,  scale: 'scale-[1.3]'  },
-  { src: '/images/cafe-interior2.png', alt: 'Café seating area',                label: 'Seating Area',        cat: 'cafe',  portrait: true,  scale: 'scale-[1.3]'  },
-  { src: '/images/cafe-logo.png',      alt: 'Mini Machines Café logo wall',     label: 'Café Logo',           cat: 'cafe',  portrait: true,  scale: 'scale-[1.12]'  },
+  { src: '/images/turf-aerial.png', alt: 'Aerial view of the arena', label: 'The Arena', cat: 'turf', portrait: false, scale: 'scale-[1.0]' },
+  { src: '/images/turf-night.png', alt: 'Turf under floodlights at night', label: 'Night Sessions', cat: 'turf', portrait: false, scale: 'scale-[1.0]' },
+  { src: '/images/turf-cricket.png', alt: 'Cricket setup with stumps', label: 'Cricket Ready', cat: 'turf', portrait: false, scale: 'scale-[1.32]' },
+  { src: '/images/turf-sunset.png', alt: 'Turf at golden hour', label: 'Golden Hour', cat: 'turf', portrait: false, scale: 'scale-[1.4]' },
+  { src: '/images/turf-day.png', alt: 'Turf during the day', label: 'Day Play', cat: 'turf', portrait: false, scale: 'scale-[1.0]' },
+  { src: '/images/cafe-interior.png', alt: 'Mini Machines Café interior', label: 'Mini Machines Café', cat: 'cafe', portrait: false, scale: 'scale-[1.0]' },
+  { src: '/images/rc-excavator.png', alt: 'RC excavator on sand track', label: 'RC Excavator', cat: 'cafe', portrait: false, scale: 'scale-[1.0]' },
+  { src: '/images/rc-cars.png', alt: 'RC cars racing', label: 'RC Cars', cat: 'cafe', portrait: 'false', scale: 'scale-[1.12]' },
+  { src: '/images/board-games.png', alt: 'Board games mural', label: 'Board Games', cat: 'cafe', portrait: true, scale: 'scale-[1.3]' },
+  { src: '/images/cafe-side.png', alt: 'Café ambiance shot', label: 'Café Ambiance', cat: 'cafe', portrait: 'false', scale: 'scale-[1.3]' },
+  { src: '/images/cafe-interior2.png', alt: 'Café seating area', label: 'Seating Area', cat: 'cafe', portrait: 'false', scale: 'scale-[1.3]' },
+  { src: '/images/cafe-logo.png', alt: 'Mini Machines Café logo wall', label: 'Café Logo', cat: 'cafe', portrait: true, scale: 'scale-[1.12]' },
 ]
 
 const cats = [
-  { key: 'all',  label: 'All' },
+  { key: 'all', label: 'All' },
   { key: 'turf', label: 'The Turf' },
   { key: 'cafe', label: 'The Café' },
 ]
@@ -68,7 +68,7 @@ export default function Gallery() {
               <img
                 src={photo.src}
                 alt={photo.alt}
-                className={`absolute w-full h-full object-cover ${photo.portrait ? '-rotate-90' : ''} ${photo.scale}`}
+                className={`absolute w-full h-full object-cover ${photo.portrait === 'cw' ? 'rotate-90' : photo.portrait === true ? '-rotate-90' : ''} ${photo.scale}`}
                 style={{ top: 0, left: 0 }}
               />
               <div className="absolute inset-0 flex items-center justify-center p-4 bg-black/40 pointer-events-none transition-colors duration-300 group-hover:bg-black/50">
@@ -94,8 +94,8 @@ export default function Gallery() {
           <button className="absolute top-5 right-5 text-white p-2 hover:text-red-400 transition-colors" onClick={() => setLb(null)}><X size={28} /></button>
           <div onClick={e => e.stopPropagation()} className="max-w-5xl mx-4 flex flex-col items-center">
             <img src={lb.src} alt={lb.alt}
-              className={lb.portrait ? '-rotate-90' : ''}
-              style={{ maxWidth: '90vw', maxHeight: '82vh', objectFit: 'contain', display: 'block', transform: lb.portrait ? 'rotate(-90deg) scale(0.85)' : 'none' }} />
+              className={lb.portrait === 'cw' ? 'rotate-90' : lb.portrait === true ? '-rotate-90' : ''}
+              style={{ maxWidth: '90vw', maxHeight: '82vh', objectFit: 'contain', display: 'block', transform: lb.portrait === 'cw' ? 'rotate(90deg) scale(0.85)' : lb.portrait === true ? 'rotate(-90deg) scale(0.85)' : 'none' }} />
             <p className="text-center mt-3 text-sm" style={{ color: 'rgba(255,255,255,0.55)', zIndex: 10 }}>{lb.label}</p>
           </div>
         </div>
